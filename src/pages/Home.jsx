@@ -3,7 +3,7 @@ import { useScrollToTop } from '../hooks/useScrollToTop';
 const Home = () => {
   useScrollToTop();
   return (
-    <section className=" relative h-[120vh] flex flex-col items-center justify-center text-center text-[#FDFCF0]">
+    <section className=" relative h-[120vh] md:min-h-screen flex flex-col items-center justify-center text-center text-[#FDFCF0]">
       {/* Background Image */}
       <div 
         className="absolute inset-0 -z-10 bg-cover bg-center" 
@@ -14,7 +14,7 @@ const Home = () => {
       </div>
 
       {/* Content */}
-      <h1 className="text-7xl md:text-8xl font-serif mb-4 drop-shadow-sm">
+      <h1 className="text-5xl md:text-8xl font-serif mb-4 drop-shadow-sm">
         Retro Glamour Finds
       </h1>
       

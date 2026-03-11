@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 // import { Link } from 'react-router-dom';
-import { Search, User, ShoppingBag, Menu, X } from 'lucide-react'; 
+import { Search, User, ShoppingBag, Menu, X } from 'lucide-react';
 
 const Navbar = ({ searchQuery, setSearchQuery, onShowCart, onShowLogin }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -34,23 +34,23 @@ const Navbar = ({ searchQuery, setSearchQuery, onShowCart, onShowLogin }) => {
     setIsMobileMenuOpen(false);
   };
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 py-4 bg-[#FAF8F1] text-white">
-      <div className="flex items-center gap-2">       
-    <span className="text-2xl font-semibold text-[#be9b7b] tracking-wide"><span className='text-4xl font-bold text-[#4A2C1D]  border-t-2 border-[#4A2C1D] rounded-full '>S</span>aenom</span> 
+    <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 md:px-8 py-4 bg-[#FAF8F1] text-white">
+      <div className="flex items-center gap-2">
+        <span className="text-2xl font-semibold text-[#be9b7b] tracking-wide"><span className='text-4xl font-bold text-[#4A2C1D]  border-t-2 border-[#4A2C1D] rounded-full '>S</span>aenom</span>
       </div>
-      <div className="md:flex gap-8 font-medium">
+      <div className="hidden md:flex gap-8 font-medium">
         <a href="#home" className="text-[#4A2C1D] hover:text-[#be9b7b] transition">Home</a>
         <a href="#about" className="text-[#4A2C1D] hover:text-[#be9b7b] transition">About</a>
         <a href="#shop" className="text-[#4A2C1D] hover:text-[#be9b7b] transition">Shop</a>
         <a href="#contact" className="text-[#4A2C1D] hover:text-[#be9b7b] transition">Contact Us</a>
       </div>
 
-    
-      <div className="flex items-center gap-4">
+
+      <div className="flex items-center gap-2 md:gap-4">
         <div className="relative">
-          <input 
-            type="text" 
-            placeholder="Search what you want..." 
+          <input
+            type="text"
+            placeholder="Search what you want..."
             value={searchQuery}
             onChange={(e) => {
               setSearchQuery(e.target.value);
@@ -59,7 +59,7 @@ const Navbar = ({ searchQuery, setSearchQuery, onShowCart, onShowLogin }) => {
             onFocus={() => setShowSuggestions(true)}
             onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
             onKeyDown={handleKeyDown}
-            className="bg-[#EAE3D2] bg-opacity-80 rounded-full px-4 py-1.5 pl-10 text-sm text-[#4A2C1D] placeholder-[#4A2C1D] focus:outline w-48"
+            className="bg-[#EAE3D2] bg-opacity-80 rounded-full px-4 py-1.5 pl-10 text-sm text-[#4A2C1D] placeholder-[#4A2C1D] focus:outline w-32 sm:w-48"
           />
           <Search className="absolute left-3 top-2 w-4 h-4 text-[#4A2C1D]" />
           {showSuggestions && searchQuery && suggestions.length > 0 && (
@@ -76,7 +76,7 @@ const Navbar = ({ searchQuery, setSearchQuery, onShowCart, onShowLogin }) => {
             </div>
           )}
         </div>
-        
+
         {/* Mobile Menu Button */}
         <button
           onClick={toggleMobileMenu}
@@ -88,18 +88,19 @@ const Navbar = ({ searchQuery, setSearchQuery, onShowCart, onShowLogin }) => {
             <Menu className="w-5 h-5 text-[#4A2C1D]" />
           )}
         </button>
+        <div className="flex items-center gap-2">
+          <div className=" bg-[#4A2C1D] p-1.5 sm:p-2 rounded-full cursor-pointer" onClick={onShowLogin}>
+            <User className="w-4 h-4 sm:w-5 sm:h-5 text-[#FAF8F1]" />
+          </div>
 
-        <div className="bg-[#4A2C1D] p-2 rounded-full cursor-pointer" onClick={onShowLogin}>
-          <User className="w-5 h-5 text-[#FAF8F1]" />
-        </div>
-
-        <div className="relative cursor-pointer" onClick={onShowCart}>
-          <ShoppingBag className="w-6 h-6 text-[#4A2C1D]" />
-          {cartItems.length > 0 && (
-            <span className="absolute -top-1 -right-1 text-[10px] bg-[#A78BFA] text-white rounded-full w-5 h-5 flex items-center justify-center">
-              {cartItems.reduce((total, item) => total + item.quantity, 0)}
-            </span>
-          )}
+          <div className=" relative cursor-pointer" onClick={onShowCart}>
+            <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 text-[#4A2C1D]" />
+            {cartItems.length > 0 && (
+              <span className="absolute -top-1 -right-1 text-[8px] sm:text-[10px] bg-[#A78BFA] text-white rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center">
+                {cartItems.reduce((total, item) => total + item.quantity, 0)}
+              </span>
+            )}
+          </div>
         </div>
       </div>
 
@@ -109,21 +110,21 @@ const Navbar = ({ searchQuery, setSearchQuery, onShowCart, onShowLogin }) => {
           <div className="bg-[#FAF8F1] w-full h-full pt-8">
             <div className="flex flex-col items-center space-y-8">
               <a
-                to="#home" 
+                to="#home"
                 className="text-[#4A2C1D] hover:text-[#be9b7b] transition text-xl font-medium"
                 onClick={closeMobileMenu}
               >
                 Home
               </a>
-              <a 
-                href="#about" 
+              <a
+                href="#about"
                 className="text-[#4A2C1D] hover:text-[#be9b7b] transition text-xl font-medium"
                 onClick={closeMobileMenu}
               >
                 About
               </a>
-              <a 
-                href="#shop" 
+              <a
+                href="#shop"
                 className="text-[#4A2C1D] hover:text-[#be9b7b] transition text-xl font-medium"
                 onClick={closeMobileMenu}
               >
