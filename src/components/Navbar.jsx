@@ -38,7 +38,7 @@ const Navbar = ({ searchQuery, setSearchQuery, onShowCart, onShowLogin }) => {
       <div className="flex items-center gap-2">       
     <span className="text-2xl font-semibold text-[#be9b7b] tracking-wide"><span className='text-4xl font-bold text-[#4A2C1D]  border-t-2 border-[#4A2C1D] rounded-full '>S</span>aenom</span> 
       </div>
-      <div className="hidden md:flex gap-8 font-medium">
+      <div className="md:flex gap-8 font-medium">
         <a href="#home" className="text-[#4A2C1D] hover:text-[#be9b7b] transition">Home</a>
         <a href="#about" className="text-[#4A2C1D] hover:text-[#be9b7b] transition">About</a>
         <a href="#shop" className="text-[#4A2C1D] hover:text-[#be9b7b] transition">Shop</a>
