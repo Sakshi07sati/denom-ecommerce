@@ -1,28 +1,50 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-// import { Link } from 'react-router-dom';
-import { Search, User, ShoppingBag, Menu, X } from 'lucide-react';
+import { Search, User, ShoppingBag, Menu, X, Heart } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = ({ searchQuery, setSearchQuery, onShowCart, onShowLogin }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const wishlistItems = useSelector((state) => state.wishlist.items);
 
   const products = useSelector((state) => state.products.products);
   const cartItems = useSelector((state) => state.cart.items);
+  const navigate = useNavigate();
 
-  const suggestions = products.filter(product =>
-    product.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const suggestions = products
+    .filter((product) => {
+      const query = searchQuery?.toLowerCase() || "";
 
-  const handleSelectSuggestion = (title) => {
-    setSearchQuery(title);
+      return (
+        product.title.toLowerCase().includes(query) ||
+        (product.brand && product.brand.toLowerCase().includes(query)) ||
+        (product.category && product.category.toLowerCase().includes(query))
+      );
+    })
+    .slice(0, 5);
+  const handleSelectSuggestion = (product) => {
+    setSearchQuery(product.title);
     setShowSuggestions(false);
+    navigate(`/product/${product.id}`);
   };
-
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      setSearchQuery(e.target.value);
+    if (e.key === "Enter") {
+      const value = e.target.value.toLowerCase();
+
+      const matchedProduct = products.find((product) =>
+        product.title.toLowerCase().includes(value) ||
+        (product.brand && product.brand.toLowerCase().includes(value)) ||
+        (product.category && product.category.toLowerCase().includes(value))
+      );
+
       setShowSuggestions(false);
+
+      if (matchedProduct) {
+        navigate(`/product/${matchedProduct.id}`);
+      } else {
+        navigate(`/shop?search=${value}`);
+      }
     }
   };
 
@@ -34,15 +56,15 @@ const Navbar = ({ searchQuery, setSearchQuery, onShowCart, onShowLogin }) => {
     setIsMobileMenuOpen(false);
   };
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 md:px-8 py-4 bg-[#FAF8F1] text-white">
+    <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 md:px-8 py-4 bg-[#FAF8F1] text-white pointer-events-auto">
       <div className="flex items-center gap-2">
         <span className="text-2xl font-semibold text-[#be9b7b] tracking-wide"><span className='text-4xl font-bold text-[#4A2C1D]  border-t-2 border-[#4A2C1D] rounded-full '>S</span>aenom</span>
       </div>
       <div className="hidden md:flex gap-8 font-medium">
-        <a href="#home" className="text-[#4A2C1D] hover:text-[#be9b7b] transition">Home</a>
-        <a href="#about" className="text-[#4A2C1D] hover:text-[#be9b7b] transition">About</a>
-        <a href="#shop" className="text-[#4A2C1D] hover:text-[#be9b7b] transition">Shop</a>
-        <a href="#contact" className="text-[#4A2C1D] hover:text-[#be9b7b] transition">Contact Us</a>
+        <Link to="/" className="text-[#4A2C1D] hover:text-[#be9b7b] transition">Home</Link>
+        <Link to="/about" className="text-[#4A2C1D] hover:text-[#be9b7b] transition">About</Link>
+        <Link to="/shop" className="text-[#4A2C1D] hover:text-[#be9b7b] transition">Shop</Link>
+        <Link to="/contact" className="text-[#4A2C1D] hover:text-[#be9b7b] transition">Contact Us</Link>
       </div>
 
 
@@ -67,7 +89,7 @@ const Navbar = ({ searchQuery, setSearchQuery, onShowCart, onShowLogin }) => {
               {suggestions.map((product) => (
                 <div
                   key={product.id}
-                  onClick={() => handleSelectSuggestion(product.title)}
+                  onMouseDown={() => handleSelectSuggestion(product)}
                   className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-[#4A2C1D] text-sm"
                 >
                   {product.title}
@@ -96,11 +118,25 @@ const Navbar = ({ searchQuery, setSearchQuery, onShowCart, onShowLogin }) => {
           <div className=" relative cursor-pointer" onClick={onShowCart}>
             <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 text-[#4A2C1D]" />
             {cartItems.length > 0 && (
-              <span className="absolute -top-1 -right-1 text-[8px] sm:text-[10px] bg-[#A78BFA] text-white rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center">
+              <span className="absolute -top-3 -right-2 text-[8px] sm:text-[10px] bg-[#A78BFA] text-white rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center">
                 {cartItems.reduce((total, item) => total + item.quantity, 0)}
               </span>
             )}
           </div>
+
+          <div className="relative">
+            <Link to="/wishlist">
+              <Heart size={28} className="w-5 h-5 sm:w-6 sm:h-6 text-[#4A2C1D]" />
+
+              {wishlistItems.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center">
+                  {wishlistItems.length}
+                </span>
+              )}
+
+            </Link>
+          </div>
+
         </div>
       </div>
 
@@ -109,27 +145,34 @@ const Navbar = ({ searchQuery, setSearchQuery, onShowCart, onShowLogin }) => {
         <div className="md:hidden fixed inset-0 top-20 bg-black bg-opacity-50 z-40" onClick={closeMobileMenu}>
           <div className="bg-[#FAF8F1] w-full h-full pt-8">
             <div className="flex flex-col items-center space-y-8">
-              <a
-                to="#home"
+              <Link
+                to="/"
                 className="text-[#4A2C1D] hover:text-[#be9b7b] transition text-xl font-medium"
                 onClick={closeMobileMenu}
               >
                 Home
-              </a>
-              <a
-                href="#about"
+              </Link>
+              <Link
+                to="/about"
                 className="text-[#4A2C1D] hover:text-[#be9b7b] transition text-xl font-medium"
                 onClick={closeMobileMenu}
               >
                 About
-              </a>
-              <a
-                href="#shop"
+              </Link>
+              <Link
+                to="/shop"
                 className="text-[#4A2C1D] hover:text-[#be9b7b] transition text-xl font-medium"
                 onClick={closeMobileMenu}
               >
                 Shop
-              </a>
+              </Link>
+              <Link
+                to="/contact"
+                className="text-[#4A2C1D] hover:text-[#be9b7b] transition text-xl font-medium"
+                onClick={closeMobileMenu}
+              >
+                Contact Us
+              </Link>
             </div>
           </div>
         </div>

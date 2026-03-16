@@ -1,5 +1,6 @@
 import React from 'react';
-import { useScrollToTop } from '../hooks/useScrollToTop';
+import { useScrollToTop } from '../../hooks/useScrollToTop';
+import { Link } from 'react-router-dom';
 
 const AboutUs = () => {
   useScrollToTop();
@@ -26,9 +27,9 @@ return (
                 </p>
 
                 
-                <a href='#contact' className="inline-block bg-[#4A2C1D] text-white px-10 py-3.5 rounded-full font-medium tracking-wide hover:bg-[#EAE3D2] hover:text-[#4A2C1D] transition-colors duration-200 delay-150">
+                <Link to='/contact' className="inline-block bg-[#4A2C1D] text-white px-10 py-3.5 rounded-full font-medium tracking-wide hover:bg-[#EAE3D2] hover:text-[#4A2C1D] transition-colors duration-200 delay-150">
                     Contact Us
-                </a>
+                </Link>
             </div>
 
          

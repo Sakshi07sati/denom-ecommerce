@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
-import { useScrollToTop } from '../hooks/useScrollToTop';
+import { useScrollToTop } from '../../hooks/useScrollToTop';
 
 const ContactUs = () => {
   useScrollToTop();

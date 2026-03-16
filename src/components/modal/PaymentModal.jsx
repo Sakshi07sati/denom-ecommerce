@@ -282,9 +282,7 @@ const PaymentModal = ({ isOpen, onClose, orderDetails }) => {
                 )}
               </button>
 
-              <p className="text-xs text-[#A0927C] text-center mt-4">
-                This is a demo payment. No actual charges will be made.
-              </p>
+
             </>
           )}
         </div>

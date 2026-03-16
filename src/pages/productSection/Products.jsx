@@ -1,7 +1,7 @@
 import { useSelector ,useDispatch} from "react-redux";
 import { useEffect } from "react";
-import {fetchProducts} from "../features/products/productsSlice";
-import { useScrollToTop } from '../hooks/useScrollToTop';
+import {fetchProducts} from "../../features/products/productsSlice";
+import { useScrollToTop } from '../../hooks/useScrollToTop';
 
 function Products() {
   useScrollToTop();

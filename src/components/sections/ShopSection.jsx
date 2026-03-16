@@ -1,8 +1,9 @@
+
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { toggleWishlist } from '../store/wishlistSlice';
-import { setCategoryFilter, setPriceRange, setSortBy } from '../store/searchSlice';
+import { toggleWishlist } from '../../store/wishlistSlice';
+import { setCategoryFilter, setPriceRange, setSortBy } from '../../store/searchSlice';
 import { Filter, Star, Heart, ShoppingCart, Check, AlertCircle } from 'lucide-react';
 
 const ProductCard = ({ searchQuery }) => {
@@ -15,13 +16,30 @@ const ProductCard = ({ searchQuery }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const filteredProducts = products.filter(product => {
-        const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                              (product.brand && product.brand.toLowerCase().includes(searchQuery.toLowerCase()));
-        const matchesCategory = filters.category === 'All' || product.category === filters.category;
-        const matchesPrice = product.price >= filters.priceRange[0] && product.price <= filters.priceRange[1];
-        return matchesSearch && matchesCategory && matchesPrice;
-    }).sort((a, b) => {
+    // const filteredProducts = products.filter(product => {
+    //     const matchesSearch = product.title.toLowerCase().includes(searchQuery || "".toLowerCase()) ||
+    //         (product.brand && product.brand.toLowerCase().includes(searchQuery.toLowerCase()));
+    //     const matchesCategory = filters.category === 'All' || product.category === filters.category;
+    //     const matchesPrice = product.price >= filters.priceRange[0] && product.price <= filters.priceRange[1];
+    //     return matchesSearch && matchesCategory && matchesPrice;
+    const filteredProducts = products
+  .filter((product) => {
+    const query = searchQuery ? searchQuery.toLowerCase() : "";
+
+    const matchesSearch =
+      product.title.toLowerCase().includes(query) ||
+      (product.brand && product.brand.toLowerCase().includes(query));
+
+    const matchesCategory =
+      filters.category === "All" || product.category === filters.category;
+
+    const matchesPrice =
+      product.price >= filters.priceRange[0] &&
+      product.price <= filters.priceRange[1];
+
+    return matchesSearch && matchesCategory && matchesPrice;
+  })
+    .sort((a, b) => {
         switch (filters.sortBy) {
             case 'Price: Low to High':
                 return a.price - b.price;
@@ -66,7 +84,7 @@ const ProductCard = ({ searchQuery }) => {
 
                 <div className="flex items-center gap-4">
                     <span className="text-sm text-gray-500 uppercase tracking-widest">Sort By:</span>
-                    <select 
+                    <select
                         value={filters.sortBy}
                         onChange={(e) => dispatch(setSortBy(e.target.value))}
                         className="bg-transparent font-medium text-[#4A2C1D] focus:outline-none cursor-pointer"
@@ -87,7 +105,7 @@ const ProductCard = ({ searchQuery }) => {
                             <ul className="space-y-3">
                                 {["All", "smartphones", "laptops", "fragrances", "skincare", "groceries", "home-decoration"].map(cat => (
                                     <li key={cat}>
-                                        <button 
+                                        <button
                                             onClick={() => handleCategoryChange(cat)}
                                             className={`text-sm transition ${filters.category === cat ? 'text-[#A78BFA] font-medium' : 'text-gray-600 hover:text-[#A78BFA]'}`}
                                         >
@@ -100,13 +118,13 @@ const ProductCard = ({ searchQuery }) => {
 
                         <div className="mb-10 text-[#4A2C1D]">
                             <h3 className="font-serif text-xl mb-4">Price Range</h3>
-                            <input 
-                                type="range" 
-                                min="0" 
-                                max="10000" 
+                            <input
+                                type="range"
+                                min="0"
+                                max="10000"
                                 value={filters.priceRange[1]}
                                 onChange={(e) => handlePriceRangeChange([0, parseInt(e.target.value)])}
-                                className="w-full accent-[#8B6F47]" 
+                                className="w-full accent-[#8B6F47]"
                             />
                             <div className="flex justify-between text-xs mt-2 text-[#9B8B75] font-medium">
                                 <span>₹0</span>
@@ -124,12 +142,13 @@ const ProductCard = ({ searchQuery }) => {
                             const reviewCount = product.reviews ? product.reviews.length : 0;
 
                             return (
-                                <div 
-                                    key={product.id} 
+                                <div
+                                    key={product.id}
                                     className="group cursor-pointer bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition duration-500 transform hover:scale-105"
                                 >
                                     {/* Product Image */}
-                                    <div className="relative aspect-[4/5] overflow-hidden bg-[#EAD9C3]">
+                                    <div className="relative aspect-[4/5] overflow-hidden bg-[#EAD9C3]"
+                                        onClick={() => navigate(`/product/${product.id}`)}>
                                         <img
                                             src={product.thumbnail}
                                             alt={product.title}
@@ -152,19 +171,27 @@ const ProductCard = ({ searchQuery }) => {
 
                                         {/* Wishlist Button */}
                                         <button
-                                            onClick={(e) => { e.stopPropagation(); handleToggleWishlist(product.id); }}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                handleToggleWishlist(product);
+                                            }}
                                             className="absolute top-4 right-4 z-10 p-3 bg-white/90 rounded-full shadow-md hover:bg-white transition-all transform hover:scale-110"
                                         >
-                                            <Heart
-                                                size={20}
-                                                fill={wishlist.includes(product.id) ? "#DC2626" : "none"}
-                                                className={wishlist.includes(product.id) ? "text-[#DC2626]" : "text-[#4A2C1D]"}
-                                            />
+                                            {(() => {
+                                                const isInWishlist = wishlist.some((item) => item.id === product.id);
+                                                return (
+                                                    <Heart
+                                                        size={20}
+                                                        fill={isInWishlist ? "#DC2626" : "none"}
+                                                        className={isInWishlist ? "text-[#DC2626]" : "text-[#4A2C1D]"}
+                                                    />
+                                                );
+                                            })()}
                                         </button>
 
                                         {/* Overlay */}
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4 gap-3">
-                                            <button 
+                                            <button
                                                 onClick={() => navigate(`/product/${product.id}`)}
                                                 className="bg-[#FDFCF0] text-[#4A2C1D] px-6 py-2 rounded-full font-serif  font-bold shadow-xl hover:bg-[#8B6F47] hover:text-white transition transform"
                                             >
@@ -189,9 +216,9 @@ const ProductCard = ({ searchQuery }) => {
                                         <div className="flex items-center justify-between mb-3 pb-3 border-b border-[#EAD9C3]">
                                             <div className="flex items-center gap-1">
                                                 {[...Array(5)].map((_, i) => (
-                                                    <Star 
-                                                        key={i} 
-                                                        size={14} 
+                                                    <Star
+                                                        key={i}
+                                                        size={14}
                                                         fill={i < Math.round(product.rating) ? '#FCD34D' : '#D4A574'}
                                                         className={i < Math.round(product.rating) ? 'text-yellow-400' : 'text-[#D4A574]'}
                                                     />
@@ -238,11 +265,10 @@ const ProductCard = ({ searchQuery }) => {
                                                 if (product.stock > 0) navigate(`/product/${product.id}`);
                                             }}
                                             disabled={product.stock === 0}
-                                            className={`w-full py-2 rounded-lg font-medium text-sm transition flex items-center justify-center gap-2 ${
-                                                product.stock === 0
-                                                    ? 'bg-[#D4A574] text-white cursor-not-allowed'
-                                                    : 'bg-gradient-to-r from-[#8B6F47] to-[#6B5436] text-white hover:shadow-lg'
-                                            }`}
+                                            className={`w-full py-2 rounded-lg font-medium text-sm transition flex items-center justify-center gap-2 ${product.stock === 0
+                                                ? 'bg-[#D4A574] text-white cursor-not-allowed'
+                                                : 'bg-gradient-to-r from-[#8B6F47] to-[#6B5436] text-white hover:shadow-lg'
+                                                }`}
                                         >
                                             <ShoppingCart size={16} />
                                             {product.stock === 0 ? 'Out of Stock' : 'Quick View'}
