@@ -78,10 +78,10 @@ const Cart = () => {
             {/* LEFT: Items List */}
             <div className="lg:w-[65%] space-y-3">
               {/* Delivery Address Card (Mobile Refined Spacing) */}
-              <div className="bg-white p-3 border border-gray-100 rounded-sm flex justify-between items-center shadow-sm sm:shadow-none sm:bg-gray-50/50">
+              {/* <div className="bg-white p-3 border border-gray-100 rounded-sm flex justify-between items-center shadow-sm sm:shadow-none sm:bg-gray-50/50">
                 <p className="text-[11px] text-gray-500 uppercase font-medium">Deliver to: <span className="font-bold text-gray-800">Select Address</span></p>
                 <button className="text-[#8B6F47] text-[10px] font-bold uppercase border border-[#8B6F47] px-4 py-1.5 rounded-sm">Add</button>
-              </div>
+              </div> */}
 
               {cart.items.map((item) => (
                 <div key={item.product.id} className="relative flex bg-white border border-gray-100 rounded-sm p-3 shadow-sm sm:shadow-none">
@@ -117,7 +117,7 @@ const Cart = () => {
               ))}
             </div>
 
-            {/* RIGHT: Price Summary */}
+        
             <div className="lg:w-[35%]">
               <div className="sticky top-28 bg-white p-4 sm:p-6 border border-gray-100 rounded-sm">
                 <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">Price Details ({cart.items.length} Items)</h3>
@@ -130,7 +130,7 @@ const Cart = () => {
                   <span>Total Amount</span>
                   <span>₹{(cart.total + shippingFee).toFixed(0)}</span>
                 </div>
-                {/* Only visible on Desktop */}
+               
                 <button onClick={() => navigate('/checkout')} className="hidden sm:block w-full mt-6 bg-[#8B6F47] text-white py-3 font-bold uppercase tracking-widest text-xs">Place Order</button>
               </div>
             </div>
@@ -138,7 +138,7 @@ const Cart = () => {
         </div>
       </div>
 
-      {/* STICKY BOTTOM BAR (Mobile Only) */}
+  
       <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-3 flex items-center justify-between z-[110] shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
         <div className="flex flex-col pl-2">
           <span className="text-sm font-extrabold text-[#4A2C1D]">₹{(cart.total + shippingFee).toFixed(0)}</span>
