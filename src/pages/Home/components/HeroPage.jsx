@@ -21,15 +21,15 @@ const HeroPage = () => {
     },
     {
       id: 3,
-      image: "https://media.istockphoto.com/id/1217108207/photo/shopping-or-delivery-fruits-and-vegetables.jpg?s=612x612&w=0&k=20&c=Fhd4ySZl4lwVoHCPcpOO-UOldzTUYPVEHaNc2cYp3KI=",
+      image: "https://i.pinimg.com/1200x/25/c1/ea/25c1ea3d44ba8df0115adf4ca33144e9.jpg",
       title: "Groceries with a Twist",
       subtitle: "Healthy, Unique & Delicious Finds for Your Pantry"
     },
     {
       id: 4,
-      image: "https://i.pinimg.com/1200x/87/44/72/87447213c0a525cbea61684685b67da3.jpg",
+      image: "https://i.pinimg.com/736x/21/f9/ea/21f9ea6000fad9961ae9cfa192627bf9.jpg",
       title: "The Summer Archive",
-      subtitle: "Cherry Pink Blossoms & Sun-Kissed Hues"
+      subtitle: "Cherry Blossoms & Sun-Kissed Hues"
     }
   ];
 
@@ -53,7 +53,7 @@ const HeroPage = () => {
 
 
   return (
-    <section className="relative h-[110vh] md:min-h-screen w-full object-cover overflow-hidden flex flex-col items-center justify-center text-center text-[#FDFCF0]">
+    <section className="relative h-[110vh] md:min-h-screen w-full object-cover overflow-hidden flex flex-col items-center justify-center text-center text-[#FDFCF0] ">
       
       {/* 1. Background Slides */}
       {slides.map((slide, index) => (
@@ -64,7 +64,7 @@ const HeroPage = () => {
           }`}
         >
           <div 
-            className="w-full h-full bg-cover bg-center transition-transform duration-[5000ms] scale-110"
+            className="w-full h-full bg-cover bg-center transition-transform duration-[5000ms] scale-110 "
             style={{ 
                 backgroundImage: `url(${slide.image})`,
                 transform: index === currentSlide ? 'scale(1)' : 'scale(1.1)' 

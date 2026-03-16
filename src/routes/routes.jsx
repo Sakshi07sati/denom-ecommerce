@@ -6,7 +6,7 @@ import { fetchProducts } from '../features/products/productsSlice';
 import { Toaster } from 'react-hot-toast';
 import Navbar from '../components/common/Navbar';
 import Wishlist from '../pages/Wishlist';
-import CartModal from '../components/modal/CartModal';
+// import CartModal from '../components/modal/CartModal';
 import LoginModal from '../components/modal/LoginModal';
 import Home from './../pages/Home/components/Home';
 import ShopSection from '../components/sections/ShopSection';
@@ -20,8 +20,9 @@ import OrderSuccess from '../pages/OrderSucess';
 
 
 
+
 function AllRoutes() {
-   const [showCart, setShowCart] = useState(false);
+   // const [showC, setShowCart] = useState(false);
    const [showLogin, setShowLogin] = useState(false);
    const searchQuery = useSelector((state) => state.search.query);
    const dispatch = useDispatch();
@@ -34,13 +35,13 @@ function AllRoutes() {
       dispatch(setSearchQuery(query));
    };
 
-   const handleShowCart = () => {
-      setShowCart(true);
-   };
+   // const handleShowCart = () => {
+   //    setShowCart(true);
+   // };
 
-   const handleCloseCart = () => {
-      setShowCart(false);
-   };
+   // const handleCloseCart = () => {
+   //    setShowCart(false);
+   // };
 
    const handleShowLogin = () => {
       setShowLogin(true);
@@ -58,7 +59,7 @@ function AllRoutes() {
             <Navbar
                searchQuery={searchQuery}
                setSearchQuery={handleSetSearchQuery}
-               onShowCart={handleShowCart}
+               // onShowCart={handleShowCart}
                onShowLogin={handleShowLogin}
             />
 
@@ -72,11 +73,12 @@ function AllRoutes() {
                <Route path="/wishlist" element={<Wishlist />} />
                <Route path="/checkout" element={<Checkout />} />
                <Route path="/order-success" element={<OrderSuccess />} />
+     
 
             </Routes>
 
          </div>
-         <CartModal isOpen={showCart} onClose={handleCloseCart} />
+         {/* <CartModal isOpen={showCart} onClose={handleCloseCart} /> */}
          <LoginModal isOpen={showLogin} onClose={handleCloseLogin} />
 
       </>

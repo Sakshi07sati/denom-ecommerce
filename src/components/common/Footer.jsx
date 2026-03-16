@@ -1,11 +1,12 @@
 import React from 'react';
 import { Facebook, Youtube, Instagram } from 'lucide-react';
+import {Link} from 'react-router-dom';
 
 const Footer = () => {
   return (
     <footer className="bg-[#4A2C1D] text-white py-16 px-8 font-sans justify-center">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 ">
           
           {/* Column 1: Brand & Address */}
           <div className="space-y-8">
@@ -26,15 +27,16 @@ const Footer = () => {
           </div>
 
           {/* Column 2: Shop Links */}
+         
           <div>
             <h3 className="text-[#be9b7b] font-bold text-xl mb-8">Shop</h3>
-            <div className="grid grid-cols-1 gap-2 text-md font-sm">
-              <a href="#" className="hover:underline">New Arrivals</a>
-              <a href="#" className="hover:underline">Fashion</a>
-              <a href="#" className="hover:underline">Groceries</a>
-              <a href="#" className="hover:underline">Beauty</a>
-              <a href="#" className="hover:underline">Perfume</a>
-               <a href="#" className="hover:underline">Furniture</a>
+            <div className="grid grid-cols-2 gap-2 text-md font-sm">
+              <Link to="/FeaturedCollection" className="hover:underline">New Arrivals</Link>
+              <Link to="/fashion" className="hover:underline">Fashion</Link>
+              <Link to="/groceries" className="hover:underline">Groceries</Link>
+              <Link to="/beauty" className="hover:underline">Beauty</Link>
+              <Link to="/perfume" className="hover:underline">Perfume</Link>
+              <Link to="/furniture" className="hover:underline">Furniture</Link>
             </div>
           </div>
 
@@ -47,9 +49,10 @@ const Footer = () => {
               <a href="#" className="hover:underline">Privacy Policy</a>
               <a href="#" className="hover:underline">Terms of Service</a>
               <a href="#" className="hover:underline">FAQ</a>
-              <a href="#" className="hover:underline">About Us</a>
+              <Link to="/about" className="hover:underline">About Us</Link>
               <a href="#" className="hover:underline">Support</a>
             </div>
+         
           </div>
         </div>
 

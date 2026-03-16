@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Search, User, ShoppingBag, Menu, X, Heart } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const Navbar = ({ searchQuery, setSearchQuery, onShowCart, onShowLogin }) => {
+const Navbar = ({ searchQuery, setSearchQuery, onShowLogin }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const wishlistItems = useSelector((state) => state.wishlist.items);
@@ -56,8 +56,8 @@ const Navbar = ({ searchQuery, setSearchQuery, onShowCart, onShowLogin }) => {
     setIsMobileMenuOpen(false);
   };
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 md:px-8 py-4 bg-[#FAF8F1] text-white pointer-events-auto">
-      <div className="flex items-center gap-2">
+    <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-2 md:px-8  py-4 bg-[#FAF8F1] text-white pointer-events-auto">
+      <div className="flex items-center gap-2 sm:text-xl ">
         <span className="text-2xl font-semibold text-[#be9b7b] tracking-wide"><span className='text-4xl font-bold text-[#4A2C1D]  border-t-2 border-[#4A2C1D] rounded-full '>S</span>aenom</span>
       </div>
       <div className="hidden md:flex gap-8 font-medium">
@@ -68,8 +68,8 @@ const Navbar = ({ searchQuery, setSearchQuery, onShowCart, onShowLogin }) => {
       </div>
 
 
-      <div className="flex items-center gap-2 md:gap-4">
-        <div className="relative">
+      <div className="flex items-center gap-2 md:gap-4 ">
+        <div className="relative ">
           <input
             type="text"
             placeholder="Search what you want..."
@@ -115,7 +115,7 @@ const Navbar = ({ searchQuery, setSearchQuery, onShowCart, onShowLogin }) => {
             <User className="w-4 h-4 sm:w-5 sm:h-5 text-[#FAF8F1]" />
           </div>
 
-          <div className=" relative cursor-pointer" onClick={onShowCart}>
+          <div className=" relative cursor-pointer"  onClick={() => navigate('/cart')}>
             <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 text-[#4A2C1D]" />
             {cartItems.length > 0 && (
               <span className="absolute -top-3 -right-2 text-[8px] sm:text-[10px] bg-[#A78BFA] text-white rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center">

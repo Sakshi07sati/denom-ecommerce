@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector } from "react-redux";
 import PaymentModal from '../components/modal/PaymentModal';
+import { useNavigate } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 
 const Checkout = () => {
   const cart = useSelector((state) => state.cart);
   const [showPayment, setShowPayment] = useState(false);
+  const navigate = useNavigate();
+
 
   const [form, setForm] = useState({
     name: "",
@@ -25,7 +29,7 @@ const Checkout = () => {
   };
 
   const handleSaveAddress = () => {
-    // Basic validation
+ 
     if (!form.name || !form.address || !form.phone) return alert("Please fill in required fields");
     
     localStorage.setItem("shippingAddress", JSON.stringify(form));
@@ -33,8 +37,8 @@ const Checkout = () => {
   };
 
   const handleEditAddress = () => {
-    setForm(savedAddress); // Fill form with current data
-    setSavedAddress(null); // Switch view back to form
+    setForm(savedAddress); 
+    setSavedAddress(null); 
   };
 
   const handleDeleteAddress = () => {
@@ -48,11 +52,17 @@ const Checkout = () => {
   return (
     <div className="bg-gray-50 min-h-screen pb-20">
       <div className="max-w-6xl mx-auto p-4 md:p-10">
+         <button
+          onClick={() => navigate('/cart')}
+          className="flex items-center gap-2 text-xs uppercase tracking-widest text-gray-400 hover:text-[#8B6F47] transition mb-8"
+        >
+          <ArrowLeft size={14} /> Back to Cart
+        </button>
         <h1 className="text-3xl font-serif mb-8 text-gray-800">Checkout</h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
           
-          {/* LEFT COLUMN: Shipping details */}
+       
           <div className="flex-1 space-y-6">
             <section className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
               <div className="flex items-center justify-between mb-6">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toggleWishlist } from '../../store/wishlistSlice';
 import { useSelector, useDispatch } from 'react-redux';
@@ -23,6 +23,7 @@ const ProductDetail = () => {
   const cartItems = useSelector((state) => state.cart.items);
   const product = products.find(p => p.id === parseInt(id));
   const wishlist = useSelector((state) => state.wishlist.items);
+
 
   if (!product) {
     return (
@@ -117,26 +118,21 @@ const ProductDetail = () => {
                   <span className="px-6 py-2 font-medium text-sm">{quantity}</span>
                   <button onClick={() => setQuantity(quantity + 1)} className="px-4 py-2 hover:bg-gray-50 text-gray-500 border-l border-gray-200">+</button>
                 </div>
-             
+
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     handleToggleWishlist(product);
                   }}
-                  className="text-gray-400 hover:text-red-500 transition hover:bg-white transition-all transform hover:scale-110"
+                  className="text-gray-400 hover:text-red-500 transition hover:bg-white transform hover:scale-110 p-2"
                 >
-                  {(() => {
-                    const isInWishlist = wishlist.some((item) => item.id === product.id);
-                    return (
-                      <Heart
-                        size={20}
-                        fill={isInWishlist ? "#DC2626" : "none"}
-                        className={isInWishlist ? "text-[#DC2626]" : "text-[#4A2C1D]"}
-                      />
-                    );
-                  })()}
+                  <Heart
+                    size={20}
+                   
+                    fill={wishlist.some((item) => item.id === product.id) ? "#DC2626" : "none"}
+                    className={wishlist.some((item) => item.id === product.id) ? "text-[#DC2626]" : "text-[#4A2C1D]"}
+                  />
                 </button>
-
 
               </div>
 
@@ -145,8 +141,8 @@ const ProductDetail = () => {
                   onClick={handleAddToCart}
                   disabled={isInCart || product.stock === 0}
                   className={`w-full py-4 rounded-sm font-bold uppercase tracking-widest text-sm transition-all flex items-center justify-center gap-3 ${isInCart || product.stock === 0
-                      ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                      : 'bg-[#8B6F47] text-white hover:bg-[#6B5436] shadow-sm'
+                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                    : 'bg-[#8B6F47] text-white hover:bg-[#6B5436] shadow-sm'
                     }`}
                 >
                   <ShoppingCart size={18} />
@@ -169,21 +165,21 @@ const ProductDetail = () => {
                 <Truck size={20} className="text-[#8B6F47]" />
                 <div>
                   <p className="text-sm font-semibold text-[#4A2C1D]">Fast Delivery</p>
-                  <p className="text-xs text-gray-500">Free shipping on orders above ₹500</p>
+                  <p className="text-xs text-gray-600">Free shipping on orders above ₹500</p>
                 </div>
               </div>
               <div className="flex items-center gap-4">
                 <RefreshCcw size={20} className="text-[#8B6F47]" />
                 <div>
                   <p className="text-sm font-semibold text-[#4A2C1D]">Easy Returns</p>
-                  <p className="text-xs text-gray-500">14-day hassle free return policy</p>
+                  <p className="text-xs text-gray-600">14-day hassle free return policy</p>
                 </div>
               </div>
               <div className="flex items-center gap-4">
                 <ShieldCheck size={20} className="text-[#8B6F47]" />
                 <div>
                   <p className="text-sm font-semibold text-[#4A2C1D]">Authentic Product</p>
-                  <p className="text-xs text-gray-500">100% genuine quality assured</p>
+                  <p className="text-xs text-gray-600">100% genuine quality assured</p>
                 </div>
               </div>
             </div>
@@ -198,8 +194,8 @@ const ProductDetail = () => {
         {/* Extended Info Sections */}
         <div className="mt-20 border-t border-gray-100 pt-12">
           <div className="max-w-4xl">
-            <h3 className="text-lg font-serif text-[#4A2C1D] mb-4 uppercase tracking-wider">Product Story</h3>
-            <p className="text-[#6B5436] leading-relaxed text-lg font-light">
+            <h3 className="text-lg font-serif  font-bold text-[#4A2C1D] mb-4 uppercase tracking-wider">Product Story</h3>
+            <p className="text-[#6B5436] leading-relaxed text-lg ">
               {product.description || "A masterfully crafted piece designed for those who appreciate the finer details of vintage aesthetics combined with modern durability."}
             </p>
           </div>
