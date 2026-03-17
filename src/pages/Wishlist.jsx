@@ -29,7 +29,7 @@ const handleRemove = (e, product) => {
   };
 
   return (
-    <div className="p-4 bg-white min-h-screen">
+    <div className="p-4 bg-[#FDFCF0] min-h-screen">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-10 border-b border-[#4A2C1D]/10 pb-6">
           <h1 className="  text-xl lg:text-3xl  font-serif text-[#4A2C1D]">My Wishlist</h1>
@@ -60,11 +60,11 @@ const handleRemove = (e, product) => {
             </button>
           </div>
         ) : (
-         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {wishlistProducts.map((product) => (
               <div 
                 key={product.id} 
-                className="group relative bg-[#FDFCF0] border-xl border-[#EAD9C3]/30  rounded-sm cursor-pointer hover:shadow-xl transition-all duration-500"
+                className="group relative bg-[#F9F8F0] border-xl border-gray-100 p-2 rounded-sm cursor-pointer hover:shadow-xl transition-all duration-500"
                 onClick={() => navigate(`/product/${product.id}`)}
               >
                 {/* Remove Icon */}
@@ -75,7 +75,7 @@ const handleRemove = (e, product) => {
                   <X size={18} />
                 </button>
 
-                <div className="overflow-hidden aspect-[3/4] mb-4 bg-[#F3EFE0]">
+                <div className="overflow-hidden  aspect-[3/4] mb-4 bg-[#F3EFE0]">
                   <img
                     src={product.thumbnail}
                     alt={product.title}
