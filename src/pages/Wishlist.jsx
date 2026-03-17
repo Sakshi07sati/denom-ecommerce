@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Trash2, X, ShoppingBag } from "lucide-react"; // Added ShoppingBag icon
+import { Trash2, X, ShoppingBag } from "lucide-react"; 
 import { toggleWishlist, clearWishlist } from "../store/wishlistSlice";
 import { addToCart } from "../store/cartSlice"; 
 
@@ -60,7 +60,7 @@ const handleRemove = (e, product) => {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {wishlistProducts.map((product) => (
               <div 
                 key={product.id} 
@@ -105,3 +105,5 @@ const handleRemove = (e, product) => {
 };
 
 export default Wishlist;
+
+

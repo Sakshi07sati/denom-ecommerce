@@ -17,6 +17,7 @@ const LoginModal = ({ isOpen, onClose }) => {
     });
   };
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -44,27 +45,27 @@ const LoginModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30 backdrop-blur-sm">
-      <div className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 bg-opacity-30 backdrop-blur-sm ">
+      <div className="bg-white rounded-lg shadow-xl mt-24 max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto relative">
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-[#4A2C1D] hover:text-[#be9b7b] text-2xl font-bold z-10"
+          className="absolute top-10 right-6 text-[#4A2C1D] hover:text-[#be9b7b] text-4xl font-bold z-10"
         >
           ×
         </button>
 
         <div className="p-8 pt-12">
           {/* 1. BRAND LOGO */}
-          <div className="flex items-center justify-center gap-2 mb-6">
+          <div className="flex items-center justify-center gap-2 mb-4">
             <span className="text-2xl font-semibold text-[#be9b7b] tracking-wide">
               <span className='text-4xl font-bold text-[#4A2C1D] border-t-2 border-[#4A2C1D] rounded-full'>S</span>aenom
             </span>
           </div>
 
           {/* 2. LOGIN CARD */}
-          <div className="text-center mb-6">
-            <h2 className="text-2xl font-serif text-[#4A2C1D] mb-2">
+          <div className="text-center mb-3">
+            <h2 className="text-xl font-serif text-[#4A2C1D] mb-1">
               {isLogin ? 'Welcome Back' : 'Create Account'}
             </h2>
             <p className="text-gray-600 text-sm">
@@ -85,7 +86,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                   value={formData.name}
                   onChange={handleChange}
                   required={!isLogin}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A78BFA] focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A78BFA] focus:border-transparent"
                   placeholder="Your full name"
                 />
               </div>
@@ -102,7 +103,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A78BFA] focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A78BFA] focus:border-transparent"
                 placeholder="your@email.com"
               />
             </div>
@@ -118,7 +119,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                 value={formData.password}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A78BFA] focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A78BFA] focus:border-transparent"
                 placeholder="Your password"
               />
             </div>
@@ -143,13 +144,13 @@ const LoginModal = ({ isOpen, onClose }) => {
 
             <button
               type="submit"
-              className="w-full bg-[#4A2C1D] text-white py-3 rounded-lg font-medium hover:bg-[#be9b7b] transition"
+              className="w-full bg-[#4A2C1D] text-white py-2 rounded-lg font-medium hover:bg-[#be9b7b] transition"
             >
               {isLogin ? 'Sign In' : 'Create Account'}
             </button>
           </form>
 
-          <div className="mt-6 text-center">
+          <div className="mt-2 text-center">
             <button
               onClick={() => setIsLogin(!isLogin)}
               className="text-[#A78BFA] hover:text-[#8B5CF6] transition text-sm"

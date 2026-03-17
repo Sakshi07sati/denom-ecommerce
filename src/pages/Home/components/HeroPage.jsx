@@ -53,13 +53,13 @@ const HeroPage = () => {
 
 
   return (
-    <section className="relative h-[110vh] md:min-h-screen w-full object-cover overflow-hidden flex flex-col items-center justify-center text-center text-[#FDFCF0] ">
+    <section className="relative lg:h-[110vh] md:min-h-screen aspect-square sm:aspect-ratio-[3/4] w-full object-cover overflow-hidden flex flex-col items-center justify-center text-center text-[#FDFCF0] ">
       
       {/* 1. Background Slides */}
       {slides.map((slide, index) => (
         <div 
           key={slide.id}
-          className={`absolute inset-0 -z-10 transition-opacity duration-1000 ease-in-out ${
+          className={`absolute inset-0 -z-10 transition-opacity duration-1000 ease-in-out  ${
             index === currentSlide ? 'opacity-100' : 'opacity-0'
           }`}
         >
@@ -92,7 +92,7 @@ const HeroPage = () => {
 
       {/* 3. Central Content */}
       <div className="z-10 px-4 max-w-4xl">
-        <h1 className="text-5xl md:text-8xl font-serif mb-4 drop-shadow-lg transition-all duration-700">
+        <h1 className="text-5xl md:text-7xl  font-serif mb-4 drop-shadow-lg transition-all duration-700">
           {slides[currentSlide].title}
         </h1>
         

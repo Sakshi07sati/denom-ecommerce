@@ -6,14 +6,14 @@ export const ProductCard= () => {
     <section className="bg-[#FAF8F1] py-20 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-serif text-[#4A2C1D] mb-4 italic">The Curated Gallery</h2>
+          <h2 className="text-4xl sm:text-md font-serif text-[#4A2C1D] mb-4 italic">The Curated Gallery</h2>
           <p className="text-[#9B8B75] tracking-[0.2em] uppercase text-sm">Exclusive Saenom Arrivals</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
           {FeaturedCollection.map((item) => (
             <div key={item.id} className="group relative">
-              <div className="overflow-hidden aspect-[3/4] bg-[#EAD9C3] rounded-sm shadow-xl">
+              <div className="overflow-hidden aspect-square sm:aspect-[3/4] bg-[#EAD9C3] rounded-sm shadow-xl">
                 <img 
                   src={item.image} 
                   alt={item.title} 
