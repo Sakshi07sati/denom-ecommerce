@@ -545,7 +545,7 @@ const Navbar = ({ searchQuery, setSearchQuery, onShowLogin }) => {
               <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 text-[#4A2C1D]" />
 
               {cartItems.length > 0 && (
-                <span className="absolute -top-3 -right-1 text-[10px] bg-[#A78BFA] text-white rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-3 -right-2 text-[10px] bg-[#A78BFA] text-white rounded-full w-5 h-5 flex items-center justify-center">
                   {cartItems.reduce((total, item) => total + item.quantity, 0)}
                 </span>
               )}
@@ -556,7 +556,7 @@ const Navbar = ({ searchQuery, setSearchQuery, onShowLogin }) => {
               <Link to="/wishlist">
                 <Heart className="w-5 h-5 sm:w-6 sm:h-6 text-[#4A2C1D]" />
                 {wishlistItems.length > 0 && (
-                  <span className="absolute -top-2 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  <span className="absolute -top-3 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                     {wishlistItems.length}
                   </span>
                 )}
