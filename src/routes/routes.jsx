@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route,useLocation } from 'react-router-dom';
 import { setSearchQuery } from '../store/searchSlice';
 import { fetchProducts } from '../features/products/productsSlice';
 import { Toaster } from 'react-hot-toast';
@@ -24,6 +24,12 @@ import OrderSuccess from '../pages/OrderSucess';
 function AllRoutes() {
    // const [showC, setShowCart] = useState(false);
    const [showLogin, setShowLogin] = useState(false);
+   const location = useLocation();
+
+    useEffect(() => {
+      setShowLogin(false);
+   }, [location]);
+   
    const searchQuery = useSelector((state) => state.search.query);
    const dispatch = useDispatch();
 
@@ -34,6 +40,7 @@ function AllRoutes() {
    const handleSetSearchQuery = (query) => {
       dispatch(setSearchQuery(query));
    };
+  
 
    // const handleShowCart = () => {
    //    setShowCart(true);
