@@ -29,10 +29,10 @@ const handleRemove = (e, product) => {
   };
 
   return (
-    <div className="p-8 bg-[#FDFCF0] min-h-screen">
+    <div className="p-4 bg-white min-h-screen">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-10 border-b border-[#4A2C1D]/10 pb-6">
-          <h1 className="text-3xl font-serif text-[#4A2C1D]">My Wishlist</h1>
+          <h1 className="  text-xl lg:text-3xl  font-serif text-[#4A2C1D]">My Wishlist</h1>
           
           {wishlistProducts.length > 0 && (
             <button 
@@ -64,13 +64,13 @@ const handleRemove = (e, product) => {
             {wishlistProducts.map((product) => (
               <div 
                 key={product.id} 
-                className="group relative bg-white border border-[#EAD9C3]/30 p-4 rounded-sm cursor-pointer hover:shadow-xl transition-all duration-500"
+                className="group relative bg-[#FDFCF0] border-xl border-[#EAD9C3]/30  rounded-sm cursor-pointer hover:shadow-xl transition-all duration-500"
                 onClick={() => navigate(`/product/${product.id}`)}
               >
                 {/* Remove Icon */}
                 <button 
                   onClick={(e) => handleRemove(e, product)}
-                  className="absolute top-6 right-6 z-10 p-2 bg-white/80 backdrop-blur-sm rounded-full text-[#4A2C1D] opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-50 hover:text-red-600"
+                  className="absolute top-3 right-2 z-10 p-2 bg-white/80 backdrop-blur-sm rounded-full text-[#4A2C1D] opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-50 hover:text-red-600"
                 >
                   <X size={18} />
                 </button>
