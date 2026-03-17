@@ -83,7 +83,7 @@ const ProductDetail = () => {
               <h2 className="text-sm uppercase tracking-[0.2em] text-gray-400 mb-2 font-medium">
                 {product.brand || "Exclusive Collection"}
               </h2>
-              <h1 className="text-3xl font-serif text-[#4A2C1D] leading-tight mb-3">
+              <h1 className="lg:text-3xl text-2xl  font-serif text-[#4A2C1D] leading-tight mb-3">
                 {product.title}
               </h1>
 
@@ -100,7 +100,7 @@ const ProductDetail = () => {
             {/* Pricing Section */}
             <div className="space-y-1">
               <div className="flex items-center gap-3">
-                <span className="text-3xl font-semibold text-[#2d2019]">₹{product.price.toFixed(2)}</span>
+                <span className="lg:text-3xl text-2xl font-semibold text-[#2d2019]">₹{product.price.toFixed(2)}</span>
                 {product.discountPercentage && (
                   <span className="text-xl text-gray-400 line-through font-light">₹{originalPrice}</span>
                 )}
@@ -114,10 +114,10 @@ const ProductDetail = () => {
             {/* Quantity and Actions */}
             <div className="space-y-6 pt-4">
               <div className="flex items-center gap-6">
-                <div className="flex items-center border border-gray-200 rounded-sm">
-                  <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-4 py-2 hover:bg-gray-50 text-gray-500 border-r border-gray-200">-</button>
+                <div className="flex items-center border border-gray-300 rounded-sm">
+                  <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-4 py-2 hover:bg-gray-100 text-gray-700 border-r border-gray-300">-</button>
                   <span className="px-6 py-2 font-medium text-sm">{quantity}</span>
-                  <button onClick={() => setQuantity(quantity + 1)} className="px-4 py-2 hover:bg-gray-50 text-gray-500 border-l border-gray-200">+</button>
+                  <button onClick={() => setQuantity(quantity + 1)} className="px-4 py-2 hover:bg-gray-50 text-gray-700 border-l border-gray-300">+</button>
                 </div>
                 {!IsGalleryOpen && (
                   <button
@@ -165,22 +165,22 @@ const ProductDetail = () => {
               <div className="flex items-center gap-4">
                 <Truck size={20} className="text-[#8B6F47]" />
                 <div>
-                  <p className="text-sm font-semibold text-[#4A2C1D]">Fast Delivery</p>
-                  <p className="text-xs text-gray-600">Free shipping on orders above ₹500</p>
+                  <p className="text-md font-semibold text-[#4A2C1D]">Fast Delivery</p>
+                  <p className="text-sm text-gray-600">Free shipping on orders above ₹500</p>
                 </div>
               </div>
               <div className="flex items-center gap-4">
                 <RefreshCcw size={20} className="text-[#8B6F47]" />
                 <div>
-                  <p className="text-sm font-semibold text-[#4A2C1D]">Easy Returns</p>
-                  <p className="text-xs text-gray-600">14-day hassle free return policy</p>
+                  <p className="text-md font-semibold text-[#4A2C1D]">Easy Returns</p>
+                  <p className="text-sm text-gray-600">14-day hassle free return policy</p>
                 </div>
               </div>
               <div className="flex items-center gap-4">
                 <ShieldCheck size={20} className="text-[#8B6F47]" />
                 <div>
-                  <p className="text-sm font-semibold text-[#4A2C1D]">Authentic Product</p>
-                  <p className="text-xs text-gray-600">100% genuine quality assured</p>
+                  <p className="text-md font-semibold text-[#4A2C1D]">Authentic Product</p>
+                  <p className="text-sm text-gray-600">100% genuine quality assured</p>
                 </div>
               </div>
             </div>

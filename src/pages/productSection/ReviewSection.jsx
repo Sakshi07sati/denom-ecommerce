@@ -160,7 +160,7 @@ const ReviewSection = ({ reviews = [], productRating = 0 }) => {
                       <span className="text-xs text-gray-300">•</span>
                       <span className="text-xs text-gray-400">{formatDate(review.date)}</span>
                     </div>
-                    <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                    <p className="text-gray-600 text-md leading-relaxed mb-4">
                       {review.comment}
                     </p>
                     <div className="flex items-center gap-2 text-[10px] text-green-600 font-bold uppercase tracking-tighter">

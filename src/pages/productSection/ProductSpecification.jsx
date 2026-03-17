@@ -49,17 +49,17 @@ const ProductSpecification = ({ product }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
           <div className="lg:col-span-7">
-            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6 border-b border-gray-50 pb-2">
+            <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6 border-b border-gray-50 pb-2">
               Specifications
             </h3>
         
             <div className="grid grid-cols-2 gap-x-8 gap-y-6">
               {specifications.map((spec, index) => (
                 <div key={index} className="flex flex-col">
-                  <span className="text-[10px] uppercase text-gray-400 font-extrabold tracking-widest mb-1">
+                  <span className="text-[12px] uppercase text-gray-400 font-extrabold tracking-widest mb-1">
                     {spec.label}
                   </span>
-                  <span className="text-sm text-[#4A2C1D] font-medium border-l-2 border-[#F5E6D3] pl-3">
+                  <span className="text-md text-[#4A2C1D] font-medium border-l-2 border-[#F5E6D3] pl-3">
                     {spec.value}
                   </span>
                 </div>
@@ -68,7 +68,7 @@ const ProductSpecification = ({ product }) => {
           </div>
 
           <div className="lg:col-span-5">
-            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6 border-b border-gray-50 pb-2">
+            <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6 border-b border-gray-50 pb-2">
               Service & Policies
             </h3>
             <div className="space-y-3">
@@ -84,7 +84,7 @@ const ProductSpecification = ({ product }) => {
                     >
                       <div className="flex items-center gap-3">
                         <Icon size={18} className="text-[#8B6F47]" />
-                        <span className="text-sm font-semibold text-[#4A2C1D]">{section.title}</span>
+                        <span className="text-md font-semibold text-[#4A2C1D]">{section.title}</span>
                       </div>
                       <ChevronDown 
                         size={16} 
