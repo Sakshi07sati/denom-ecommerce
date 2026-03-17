@@ -45,8 +45,8 @@ const LoginModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 bg-opacity-30 backdrop-blur-sm ">
-      <div className="bg-white rounded-lg shadow-xl mt-24 max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/90 bg-opacity-30 backdrop-blur-sm ">
+      <div className="bg-white rounded-lg shadow-xl mt-15 max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto relative">
         {/* Close button */}
         <button
           onClick={onClose}
@@ -64,8 +64,8 @@ const LoginModal = ({ isOpen, onClose }) => {
           </div>
 
           {/* 2. LOGIN CARD */}
-          <div className="text-center mb-3">
-            <h2 className="text-xl font-serif text-[#4A2C1D] mb-1">
+          <div className="text-center mb-6">
+            <h2 className="text-xl font-serif text-[#4A2C1D] mb-2">
               {isLogin ? 'Welcome Back' : 'Create Account'}
             </h2>
             <p className="text-gray-600 text-sm">

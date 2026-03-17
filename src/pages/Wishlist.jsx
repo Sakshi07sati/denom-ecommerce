@@ -29,7 +29,7 @@ const handleRemove = (e, product) => {
   };
 
   return (
-    <div className="p-4 bg-[#FDFCF0] min-h-screen">
+    <div className="p-4 bg-white/90 min-h-screen">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-10 border-b border-[#4A2C1D]/10 pb-6">
           <h1 className="  text-xl lg:text-3xl  font-serif text-[#4A2C1D]">My Wishlist</h1>

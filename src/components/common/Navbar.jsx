@@ -569,10 +569,10 @@ const Navbar = ({ searchQuery, setSearchQuery, onShowLogin }) => {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div
-            className="md:hidden fixed inset-0 top-[90px] bg-black bg-opacity-50"
+            className="md:hidden fixed inset-0 top-[70px] bg-black bg-opacity-70"
             onClick={closeMobileMenu}
           >
-            <div className="bg-[#FAF8F1] w-full pt-8 pb-8">
+            <div className="bg-[#EAE3D2] w-full pt-8 pb-8">
               <div className="flex flex-col items-center space-y-8">
                 <Link to="/" onClick={closeMobileMenu} className="text-[#4A2C1D] text-xl">
                   Home
@@ -594,7 +594,7 @@ const Navbar = ({ searchQuery, setSearchQuery, onShowLogin }) => {
 
       {/* MOBILE SEARCH OVERLAY */}
       {showMobileSearch && (
-        <div className="md:hidden fixed top-0 left-0 w-full bg-[#FAF8F1] z-[200] p-4 shadow-md">
+        <div className="md:hidden fixed top-0 left-0 w-full bg-[#FAF8F1] z-[200] p-4 shadow-md ">
           <div className="relative flex items-center">
 
             <input

@@ -525,10 +525,10 @@ const ProductCard = ({ searchQuery }) => {
                             const isInWishlist = wishlist.some((item) => item.id === product.id);
 
                             return (
-                                <div key={product.id} className="group flex flex-col bg-white border border-gray-100 p-2 shadow-sm h-full">
+                                <div key={product.id} className="group flex flex-col bg-white border border-gray-100 p-2 cursor-pointer ">
                                     <div className="relative aspect-[3/4] overflow-hidden bg-[#F9F8F0]" onClick={() => navigate(`/product/${product.id}`)}>
                                         
-                                        <img src={product.thumbnail} alt={product.title} className="w-full h-full object-contain p-2 mix-blend-multiply" />
+                                        <img src={product.thumbnail} alt={product.title} className="w-full h-full object-contain p-2 mix-blend-multiply shadow-md h-full group-hover:scale-105 transition-transform duration-500" />
                                         <button
                                             onClick={(e) => { e.stopPropagation(); handleToggleWishlist(product); }}
                                             className="absolute top-2 right-2 p-1.5 bg-white rounded-full shadow-sm z-20"

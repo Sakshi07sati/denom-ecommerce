@@ -156,12 +156,11 @@ const CategorySection = () => {
                     ))}
                 </div>
 
-                {/* Product Preview Grid */}
-                {/* Changed grid-cols-1 to grid-cols-2 for mobile, reduced gap on mobile */}
+ 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-10">
                     {displayedProducts.map((product) => (
                         <div key={product.id} className="group relative bg-white p-2 sm:p-4 rounded-sm shadow-sm hover:shadow-xl transition-all">
-                            {/* Changed aspect-[3/4] to aspect-square on mobile to prevent excessive height */}
+                          
                             <div className="relative cursor-pointer aspect-square sm:aspect-[3/4] overflow-hidden bg-[#F3EFE0]"
                                 onClick={() => navigate(`/product/${product.id}`)}>
                                 <img
@@ -170,7 +169,7 @@ const CategorySection = () => {
                                     className="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
                                 />
                                 
-                                {/* Adjusted badge positioning and size for mobile */}
+                           
                                 <div className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-[#be9b7b] text-white text-[8px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 font-bold rounded-sm">
                                     NEW ARRIVAL
                                 </div>

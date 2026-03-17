@@ -23,7 +23,7 @@ const Cart = () => {
 
   if (cart.items.length === 0) {
     return (
-      <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4">
+      <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4 pb-40">
         <ShoppingBag size={60} className="text-gray-200 mb-4" />
         <h2 className="text-xl font-bold text-[#4A2C1D]">Your bag is empty!</h2>
         <button onClick={() => navigate('/shop')} className="mt-4 text-[#8B6F47] font-bold uppercase text-xs border-b border-[#8B6F47]">Shop Now</button>
@@ -33,9 +33,9 @@ const Cart = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-50 sm:bg-white pb-32 sm:pb-20">
+      <div className="min-h-screen bg-gray-50 sm:bg-white pb-30 sm:pb-20">
         
-        {/* --- REFINED MOBILE HEADER (Strictly Mobile Only) --- */}
+
         <div className="sm:hidden fixed top-0 left-0 right-0 bg-white z-[110] border-b border-gray-100 shadow-sm h-16">
           <div className="flex items-center justify-between px-4 h-full">
             <div className="flex items-center gap-3">
@@ -58,12 +58,12 @@ const Cart = () => {
 
         <div className="max-w-6xl mx-auto px-0 sm:px-4">
           
-          {/* DESKTOP HEADER (Untouched) */}
-          <div className="hidden sm:block pt-24">
+          
+          <div className="hidden sm:block pt-28">
             <button onClick={() => navigate('/shop')} className="flex items-center gap-2 text-xs uppercase tracking-widest text-gray-400 hover:text-[#8B6F47] mb-8">
               <ArrowLeft size={14} /> Back to Shop
             </button>
-            <div className="flex items-center justify-between mb-8 border-b border-gray-100 pb-4">
+            <div className="flex items-center justify-between mb-2 border-b border-gray-100 pb-4">
               <h1 className="text-lg font-bold uppercase tracking-widest text-[#4A2C1D]">Shopping Bag</h1>
               <button onClick={() => dispatch(clearCart())} className="text-[10px] text-red-500 uppercase flex items-center gap-1 border border-red-100 px-3 py-1">
                 <Trash2 size={12} /> Clear Bag
@@ -71,9 +71,8 @@ const Cart = () => {
             </div>
           </div>
 
-          {/* MAIN CONTENT AREA */}
-          {/* pt-[64px] for mobile to match the 16-unit header height, sm:pt-0 for desktop */}
-          <div className="flex flex-col lg:flex-row gap-4 pt-[64px] sm:pt-0 p-3 sm:p-0">
+         
+          <div className="flex flex-col lg:flex-row gap-4 pt-[40px] sm:pt-0 p-3 sm:p-0">
             
             {/* LEFT: Items List */}
             <div className="lg:w-[65%] space-y-3">
@@ -89,11 +88,11 @@ const Cart = () => {
                   <img src={item.product.thumbnail} alt="" className="w-20 h-28 sm:w-32 sm:h-40 object-cover rounded-sm bg-gray-50" />
                   
                   {/* Product Details */}
-                  <div className="flex-1 ml-4 flex flex-col justify-between py-1">
+                  <div className="flex-1 ml-4 flex flex-col justify-between py-2">
                     <div className="flex justify-between items-start">
                       <div>
-                        <h3 className="font-bold text-[#4A2C1D] text-xs sm:text-sm uppercase leading-tight">{item.product.brand}</h3>
-                        <p className="text-[11px] sm:text-sm text-gray-500 line-clamp-1">{item.product.title}</p>
+                        <h3 className="font-bold text-[#4A2C1D] text-xs sm:text-lg uppercase leading-tight">{item.product.brand}</h3>
+                        <p className="text-[11px] sm:text-sm text-gray-500 line-clamp-2">{item.product.title}</p>
                       </div>
                       <button onClick={() => dispatch(removeFromCart(item.product.id))} className="p-1">
                         <X size={18} className="text-gray-300" />
@@ -119,7 +118,7 @@ const Cart = () => {
 
         
             <div className="lg:w-[35%]">
-              <div className="sticky top-28 bg-white p-4 sm:p-6 border border-gray-100 rounded-sm">
+              <div className="sticky top-20 bg-white p-4 sm:p-6 border border-gray-100 rounded-sm">
                 <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">Price Details ({cart.items.length} Items)</h3>
                 <div className="space-y-3 text-[12px] sm:text-sm text-gray-600 border-b border-dashed pb-4">
                   <div className="flex justify-between"><span>Total MRP</span><span>₹{totalMRP.toFixed(0)}</span></div>
@@ -131,7 +130,7 @@ const Cart = () => {
                   <span>₹{(cart.total + shippingFee).toFixed(0)}</span>
                 </div>
                
-                <button onClick={() => navigate('/checkout')} className="hidden sm:block w-full mt-6 bg-[#8B6F47] text-white py-3 font-bold uppercase tracking-widest text-xs">Place Order</button>
+                <button onClick={() => navigate('/checkout')} className="hidden sm:block w-full mt-2 bg-[#8B6F47] text-white py-4 font-bold uppercase tracking-widest text-xs">Place Order</button>
               </div>
             </div>
           </div>

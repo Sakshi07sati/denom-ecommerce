@@ -24,12 +24,11 @@ const ContactUs = () => {
   };
 
   return (
-    <section className="bg-[#FDFCF0] py-20 px-8 lg:px-24">
+    <section className="bg-[#FDFCF0] py-10 px-8 lg:px-24 ">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-        
       
         <div className="lg:w-1/2 relative">
-          <div className="aspect-[4/5] w-full overflow-hidden rounded-sm shadow-xl">
+          <div className="lg:aspect-[4/5] aspect-square aspect-ratio-[3/4] w-full overflow-hidden rounded-sm shadow-xl ">
             <img 
               src="https://i.pinimg.com/736x/f0/cd/f5/f0cdf507c6466a8777e67677e29a17f5.jpg" 
               alt="Contact Us" 
@@ -41,7 +40,7 @@ const ContactUs = () => {
         </div>
     {/* contactform */}
         <div className="lg:w-1/2 space-y-8">
-          <h2 className="text-5xl md:text-6xl font-serif text-[#4A2C1D]">
+         <h2 className="lg:text-5xl md:text-4xl text-3xl text-center font-serif text-[#4A2C1D]">
             Get In Touch
           </h2>
           

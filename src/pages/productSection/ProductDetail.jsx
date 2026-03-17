@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toggleWishlist } from '../../store/wishlistSlice';
 import { useSelector, useDispatch } from 'react-redux';
@@ -18,6 +18,7 @@ const ProductDetail = () => {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [IsGalleryOpen, setIsGalleryOpen] = useState(false);
 
   const products = useSelector((state) => state.products.products);
   const cartItems = useSelector((state) => state.cart.items);
@@ -59,7 +60,7 @@ const ProductDetail = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumb / Back Button */}
-      <div className="max-w-7xl mx-auto pt-24 px-4 md:px-8">
+      <div className="max-w-7xl mx-auto pt-4 px-4 md:px-8">
         <button
           onClick={() => navigate('/shop')}
           className="flex items-center gap-2 text-xs uppercase tracking-widest text-gray-400 hover:text-[#8B6F47] transition mb-8"
@@ -69,14 +70,14 @@ const ProductDetail = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
 
-          {/* LEFT: Image Gallery (Takes 7/12 columns) */}
+
           <div className="lg:col-span-7">
             <div className="sticky top-24">
-              <ProductGallery product={product} />
+              <ProductGallery product={product} onOpenChange={setIsGalleryOpen} />
             </div>
           </div>
 
-          {/* RIGHT: Product Info (Takes 5/12 columns) */}
+
           <div className="lg:col-span-5 space-y-8">
             <header className="border-b border-gray-100 pb-6">
               <h2 className="text-sm uppercase tracking-[0.2em] text-gray-400 mb-2 font-medium">
@@ -118,22 +119,22 @@ const ProductDetail = () => {
                   <span className="px-6 py-2 font-medium text-sm">{quantity}</span>
                   <button onClick={() => setQuantity(quantity + 1)} className="px-4 py-2 hover:bg-gray-50 text-gray-500 border-l border-gray-200">+</button>
                 </div>
+                {!IsGalleryOpen && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleToggleWishlist(product);
+                    }}
+                    className="text-gray-400 hover:text-red-500 transition hover:bg-white transform hover:scale-110 p-2"
+                  >
+                    <Heart
+                      size={20}
 
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleToggleWishlist(product);
-                  }}
-                  className="text-gray-400 hover:text-red-500 transition hover:bg-white transform hover:scale-110 p-2"
-                >
-                  <Heart
-                    size={20}
-                   
-                    fill={wishlist.some((item) => item.id === product.id) ? "#DC2626" : "none"}
-                    className={wishlist.some((item) => item.id === product.id) ? "text-[#DC2626]" : "text-[#4A2C1D]"}
-                  />
-                </button>
-
+                      fill={wishlist.some((item) => item.id === product.id) ? "#DC2626" : "none"}
+                      className={wishlist.some((item) => item.id === product.id) ? "text-[#DC2626]" : "text-[#4A2C1D]"}
+                    />
+                  </button>
+                )}
               </div>
 
               <div className="flex flex-col gap-3">
